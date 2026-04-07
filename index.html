@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chaveiro 24h Urgente | Atendimento Imediato</title>
+
+<meta name="theme-color" content="#ff0000">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #000;
+  color: #fff;
+  text-align: center;
+}
+
+.topo-alerta {
+  background: red;
+  padding: 10px;
+  font-weight: bold;
+  animation: piscar 1s infinite;
+}
+
+.hero {
+  padding: 30px 20px;
+}
+
+h1 {
+  color: #ffcc00;
+  font-size: 32px;
+}
+
+.urgente span {
+  color: red;
+  font-size: 28px;
+}
+
+.sub {
+  margin: 15px 0;
+}
+
+.btn {
+  display: block;
+  margin: 10px auto;
+  padding: 18px;
+  width: 80%;
+  max-width: 320px;
+  border-radius: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.ligar {
+  background: red;
+  color: white;
+  animation: pulse 1.5s infinite;
+}
+
+.whatsapp {
+  background: #25D366;
+  color: white;
+}
+
+.gigante {
+  background: #ff0000;
+  font-size: 22px;
+}
+
+.beneficios {
+  background: #111;
+  padding: 20px;
+}
+
+.beneficios div {
+  margin: 10px 0;
+}
+
+.prova {
+  padding: 20px;
+  font-size: 14px;
+  color: #ccc;
+}
+
+.cta-final {
+  padding: 30px;
+}
+
+.flutuante {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  padding: 20px;
+  border-radius: 50%;
+  font-size: 24px;
+  text-decoration: none;
+  color: white;
+}
+
+.urgencia-box {
+  margin-top: 15px;
+  color: #ffcc00;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes piscar {
+  50% { opacity: 0.5; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topo-alerta">
+🚨 ATENDIMENTO 24H • CHEGAMOS RÁPIDO
+</div>
+
+<header class="hero">
+
+<h1>🔑 CHAVEIRO 24 HORAS</h1>
+
+<h2 class="urgente">
+Porta trancou? Chave quebrou?<br>
+<span>RESOLVEMOS AGORA!</span>
+</h2>
+
+<p class="sub">
+Atendimento imediato na sua região
+</p>
+
+<div class="cta-principal">
+
+<a href="tel:+5561981757812" class="btn ligar">
+📞 LIGAR AGORA
+</a>
+
+<a href="https://wa.me/5561981757812" class="btn whatsapp">
+💬 CHAMAR NO WHATSAPP
+</a>
+
+</div>
+
+<div class="urgencia-box">
+⚡ Apenas <strong id="contador">3</strong> técnicos disponíveis agora
+</div>
+
+</header>
+
+<section class="beneficios">
+<div>🚗 Atendimento automotivo</div>
+<div>🏠 Abertura de portas</div>
+<div>🔐 Troca de fechaduras</div>
+<div>⚡ Chegada rápida</div>
+</section>
+
+<section class="prova">
+⭐⭐⭐⭐⭐ Mais de 500 atendimentos realizados<br>
+"Chegaram muito rápido, recomendo!"
+</section>
+
+<section class="cta-final">
+<h2>Não fique esperando!</h2>
+
+<a href="tel:+5561981757812" class="btn gigante">
+📞 RESOLVER AGORA
+</a>
+
+</section>
+
+<a href="https://wa.me/5561981757812" class="btn flutuante">
+💬
+</a>
+
+<script>
+let vagas = 3;
+
+setInterval(() => {
+  vagas--;
+  if (vagas < 1) vagas = 3;
+  document.getElementById("contador").innerText = vagas;
+}, 4000);
+</script>
+
+</body>
+</html>
