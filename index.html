@@ -179,6 +179,97 @@ Atendimento imediato na sua região
 </a>
 
 <script>
+// ============================
+// 🔐 IDENTIDADE DO USUÁRIO
+// ============================
+function getUserId() {
+  let userId = localStorage.getItem("userId");
+  if (!userId) {
+    userId = crypto.randomUUID();
+    localStorage.setItem("userId", userId);
+  }
+  return userId;
+}
+const userId = getUserId();
+
+// ============================
+// 🧠 CONTROLE AVANÇADO
+// ============================
+const MAX_CLICKS = 3;
+const BLOCK_TIME = 24 * 60 * 60 * 1000;
+
+function getData() {
+  return JSON.parse(localStorage.getItem("adControl")) || {
+    clicks: 0,
+    lastReset: Date.now(),
+    blockedUntil: 0,
+    suspicious: false
+  };
+}
+
+function saveData(data) {
+  localStorage.setItem("adControl", JSON.stringify(data));
+}
+
+function canClick() {
+  let data = getData();
+  let now = Date.now();
+
+  if (now - data.lastReset > BLOCK_TIME) {
+    data.clicks = 0;
+    data.lastReset = now;
+    data.suspicious = false;
+  }
+
+  if (now < data.blockedUntil) {
+    return false;
+  }
+
+  return true;
+}
+
+function registerClick() {
+  let data = getData();
+  let now = Date.now();
+
+  data.clicks++;
+
+  if (data.clicks >= MAX_CLICKS) {
+    data.suspicious = true;
+    data.blockedUntil = now + BLOCK_TIME;
+  }
+
+  saveData(data);
+}
+
+// ============================
+// 🎯 BLOQUEIO NOS BOTÕES
+// ============================
+document.querySelectorAll("a").forEach(link => {
+  if (link.href.includes("tel:") || link.href.includes("whatsapp")) {
+    link.addEventListener("click", function(e) {
+
+      if (!canClick()) {
+        e.preventDefault();
+        return;
+      }
+
+      registerClick();
+    });
+  }
+});
+
+// ============================
+// 🛑 BLOQUEAR CONVERSÃO
+// ============================
+function isBlockedUser() {
+  let data = getData();
+  return data.suspicious === true;
+}
+
+// ============================
+// 🔢 CONTADOR ORIGINAL
+// ============================
 let vagas = 3;
 
 setInterval(() => {
@@ -186,6 +277,7 @@ setInterval(() => {
   if (vagas < 1) vagas = 3;
   document.getElementById("contador").innerText = vagas;
 }, 4000);
+
 </script>
 
 </body>
